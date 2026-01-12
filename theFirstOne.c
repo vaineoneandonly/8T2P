@@ -45,6 +45,8 @@ int getLines(FILE *fptr)
         if (c == '\n') ++lc;
     }
 
+    rewind(fptr);
+
     return lc;
 }
 
@@ -61,9 +63,11 @@ int getLineCharCount(FILE *fptr)
     return cc;
 }
 
-int *getLineCharCount(FILE *fptr)
+int *glcc(FILE *fptr)
 {
     int l = {getLines(fptr)};
+
+    int lineCharCount[l];
 
     for (int i = 0; i < l; ++i)
     {
@@ -74,9 +78,35 @@ int *getLineCharCount(FILE *fptr)
 int main()
 {
     FILE *fptr = {fopen("messages.txt", "r")};
-    //readN(fptr);
     //readLine(fptr);
 
-    printf("%d\n%d\n", getFileSize(fptr), getLines(fptr));
+    int l = {getLines(fptr)};
+
+    int *charsPerLine = {malloc(sizeof(int) * l)};
+
+    char c;
+    int n = {0};
+    int i = {0};
+    while ((c = fgetc(fptr)) != EOF)
+    {
+        if (c == '\n')
+        {
+            charsPerLine[i] = n;
+            printf("line %d done with %d chars\n", i+1, n);
+            ++i;
+            n = 0;
+        }
+        else
+        {
+            ++n;
+        }
+    }
+
+    for (int i = 0; i < 7; ++i)
+    {
+        printf("%d - ", charsPerLine[i]);
+    }
+
+    fclose(fptr);
     return 0;
 }
