@@ -25,6 +25,8 @@ mySocket *createMySocket(char *newName)
 
     newSocket -> size = (offsetof(struct sockaddr_un, sun_path) + strlen(newSocket -> name.sun_path));
 
+    bind(newSocket -> number, (struct sockaddr *) &(newSocket -> name), newSocket -> size);
+
     return newSocket;
 }
 
@@ -36,7 +38,7 @@ void printSocketData(mySocket *s)
 
 int main(void)
 {
-    mySocket *s1 = createMySocket("asdljadjlhsa");
+    mySocket *s1 = createMySocket("111");
     printSocketData(s1);
     printf("%d\n", 23);
 }
