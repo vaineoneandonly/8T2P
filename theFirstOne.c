@@ -84,7 +84,7 @@ int main()
 
     int *charsPerLine = {malloc(sizeof(int) * l)};
 
-    char c;
+    int c;
     int n = {0};
     int i = {0};
     while ((c = fgetc(fptr)) != EOF)
