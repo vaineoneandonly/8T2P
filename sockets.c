@@ -47,5 +47,7 @@ int main(void)
         printSocketData(s2);
     }
 
+    //char *p = strfry("asdçljsadçoiasd");
+
     printSocketData(s1);
 }
