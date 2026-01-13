@@ -32,13 +32,20 @@ mySocket *createMySocket(char *newName)
 
 void printSocketData(mySocket *s)
 {
-    printf("name: %s\naddress: %d\nsize: %d", s -> name.sun_path, s -> number, (int)(s -> size));
+    printf("name: %s\naddress: %d\nsize: %d\n", s -> name.sun_path, s -> number, (int)(s -> size));
 }
-
 
 int main(void)
 {
-    mySocket *s1 = createMySocket("111");
+    mySocket *s1 = createMySocket("saDDDASD");
+
+    char *words[3] = {"asdasdsad", "dvljhkdvjhlgb", "ASdas"};
+    
+    for (int i = 0; i < sizeof(words) / sizeof(words[0]); ++i)
+    {
+        mySocket *s2 = createMySocket(words[i]);
+        printSocketData(s2);
+    }
+
     printSocketData(s1);
-    printf("%d\n", 23);
 }
